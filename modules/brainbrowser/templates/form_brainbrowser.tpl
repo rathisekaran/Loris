@@ -57,7 +57,7 @@
             <span class="control-heading" data-volume-id="{{VOLID}}">
                Value:
             </span>
-            <span id="intensity-value-{{VOLID}}" class="intensity-value"></span>
+            <span id="intensity-value-{{VOLID}}" class="control-inputs"></span>
         </div>
         <div id="color-map-{{VOLID}}">
             <span class="control-heading" id="color-map-heading-{{VOLID}}">

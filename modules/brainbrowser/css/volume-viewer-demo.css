@@ -96,19 +96,20 @@ canvas.slice-display {
   border: none;
   padding: 2px;
   margin-left: 10px;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
-  -moz-box-shadow: 1px 1px 0px 0px #787878;
-  -webkit-box-shadow: 1px 1px 0px 0px #787878;
-  box-shadow: 1px 1px 0px 0px #787878;
   width: 2em;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+  -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
 }
 
 .coords .control-inputs {
   margin-right: 0.6em;
   width: 40px;
-  font-size: 10px;
+  font-size: 12px;
 }
 
 .volume-viewer-threshold, .volume-viewer-blend {
