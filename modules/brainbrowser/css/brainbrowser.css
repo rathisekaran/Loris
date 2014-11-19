@@ -8,12 +8,13 @@ html {
 }
 
 body {
-    background: #e2e2e2 !important;
+  /* background: #e2e2e2 !important;*/
+    background: white;
 }
 
 #brainbrowser-wrapper {
     margin-top: 0px !important;
-/*    background: white;*/
+    background: white;
 }
 
 #volume-viewer {
