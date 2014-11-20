@@ -13,14 +13,16 @@
                 Y<input id="world-y-{{VOLID}}" class="control-inputs">
                 Z<input id="world-z-{{VOLID}}" class="control-inputs">
             </div>
-            <div class="control-heading" id="voxel-coordinates-heading-{{VOLID}}">
+            <div class="panel panel-default">
+             <div class="control-heading" id="voxel-coordinates-heading-{{VOLID}}">
                 Voxel Coordinates 
-            </div>
+             </div>
             <div class="voxel-coords" data-volume-id="{{VOLID}}">
                 X<input id="voxel-x-{{VOLID}}" class="control-inputs">
                 Y<input id="voxel-y-{{VOLID}}" class="control-inputs">
                 Z<input id="voxel-z-{{VOLID}}" class="control-inputs">
             </div>
+           </div>
         </div>
         <div class="blend-div" data-volume-id="{{VOLID}}">
             <span class="control-heading" id="blend-heading{{VOLID}}">Blend (0.0 to 1.0)</span>
@@ -55,7 +57,7 @@
         </div>
         <div id="intensity-value-div-{{VOLID}}">
             <span class="control-heading" data-volume-id="{{VOLID}}">
-               Value:
+               Intensity Value:
             </span>
             <span id="intensity-value-{{VOLID}}" class="control-inputs"></span>
         </div>
@@ -81,18 +83,24 @@
             <input type="checkbox" class="button" id="play-{{VOLID}}"><label for="play-{{VOLID}}">Play</label>
         </div>
         <div id="slice-series-{{VOLID}}" class="slice-series-div" data-volume-id="{{VOLID}}">
-            <div class="control-heading" id="slice-series-heading-{{VOLID}}">View slices</div>
-            <span class="slice-series-button btn btn-sm btn-primary" data-axis="xspace">Sagittal</span>
-            <span class="slice-series-button btn btn-sm btn-primary" data-axis="yspace">Coronal</span>
-            <span class="slice-series-button btn btn-sm btn-primary" data-axis="zspace">Transverse</span>
-        </div>
-    </div>
+           <div class="panel panel-default">
+           <div class="panel-heading" id="slice-series-heading-{{VOLID}}">
+            <h3 class="panel-title">View slices</h3>
+            <span class="pull-right clickable glyphicon glyphicon-chevron-up"></span>
+            </div>
+            <div class="panel-body">
+            <span class="slice-series-button" data-axis="xspace">Sagittal</span>
+            <span class="slice-series-button" data-axis="yspace">Coronal</span>
+            <span class="slice-series-button" data-axis="zspace">Transverse</span>
+            </div>
+            </div>
+ </div>
 </script>
 
 <div id="loading" style="display: none; color: #064785; font-size: 20px">Loading...</div>
 <div id="brainbrowser-wrapper" style="display: none">
     <div id="global-controls">
-    <span id="sync-volumes-wrapper">
+    <span id="sync-volumes-wrapper" class="btn btn-sm btn-primary">
         <input type="checkbox" class="button ui-helper-hidden-accessible" id="sync-volumes"><label for="sync-volumes" id="sync-volumes">Sync Volumes</label>
     </span>
     <span class="control-heading"> Set panel size:</span>

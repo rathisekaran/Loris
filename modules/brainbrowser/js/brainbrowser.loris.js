@@ -438,8 +438,11 @@ BrainBrowser.VolumeViewer.start("brainbrowser", function (viewer) {
               $("#filename-"+vol_id).html(data);
           }
       });
-
-    });
+      // Make panels collapsible
+      $('.panel-heading').on("click", function () {
+              $('.panel-body').slideToggle("fast");
+              });
+      });
 
 
     $("#brainbrowser-wrapper").slideDown({duration: 600});
@@ -467,13 +470,14 @@ BrainBrowser.VolumeViewer.start("brainbrowser", function (viewer) {
       $("#voxel-z-" + vol_id).val(parseInt(voxel_coords.z, 10));
 
       value = volume.getIntensityValue();
-      $("#intensity-value-" + vol_id)
-      .css("background-color", "#" + volume.color_map.colorFromValue(value,     {
+      $("#intensity-value-" + vol_id).html(Math.floor(value));
+     /* .css("background-color", "#" + volume.color_map.colorFromValue(value,     {
         format: "hex",
         min: volume.min,
         max: volume.max
       }))
       .html(Math.floor(value));
+      */
 
       if (volume.data && volume.data.time) {
         $("#time-slider-" + vol_id).slider("option", "value", volume.current_time);
@@ -550,4 +554,5 @@ BrainBrowser.VolumeViewer.start("brainbrowser", function (viewer) {
     // Load the volumes.
     /////////////////////
     viewer.loadVolumes(bboptions);
+
 });

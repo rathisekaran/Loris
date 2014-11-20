@@ -27,7 +27,9 @@
 body {
   background-color: #000000;
 }
-
+.clickable {
+    cursor: pointer;
+}
 #brainbrowser-wrapper {
   width: 100em;
   margin: 50px auto;
@@ -68,7 +70,7 @@ canvas.slice-display {
 .volume-controls {
  /* width: 235px;
   height: 100%;*/
-  height: 374px;
+  height: auto;
   max-height: 380px;
 }
 
@@ -165,4 +167,16 @@ canvas.slice-display {
 
 #volume-file-hint a {
   color: orange;
+}
+
+.glyphicon {
+position: relative;
+top: -10px;
+display: inline-block;
+font-family: 'Glyphicons Halflings';
+font-style: normal;
+font-weight: normal;
+line-height: 1;
+-webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
 }

@@ -98,6 +98,12 @@ body {
     border-radius: 5px;
     -webkit-border-radius: 5px;
     border-radius: 5px;
+    padding: 5px 7px;
+    line-height: 1.5;
+    color: #fff;
+    background-color: #064785;
+    border-color: #053a6d;
+    font-size: 12px;
 }
 
 #slice-series-buttons0 {
@@ -122,6 +128,9 @@ body {
 #global-controls {
     padding: 5px;
 /*    background: #555555; */
+    position: fixed;
+    top: 130px;
+    right: 0px;
     border-radius: 4px;
     -webkit-border-radius: 4px;
     display: block;
@@ -153,4 +162,7 @@ body {
 
 .intensity-value {
     padding: 1px;
+}
+.panel-body {
+ display:none;
 }
