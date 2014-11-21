@@ -177,9 +177,14 @@ BrainBrowser.VolumeViewer.start("brainbrowser", function (viewer) {
           color_map.name +'</option>'
         );
       });
-
+ /*     var div  = document.createElement("div"),
+          div2 = document.createElement("div");
+      div.setAttribute("class", "pull-right");
+      div2.setAttribute("class", "btn-group views");
+      div2.append(color_map_select);
+      div.append(div2);
+*/
       $("#color-map-" + vol_id).append(color_map_select);
-
       // Load a color map select by the user.
       container.find(".color-map-file").change(function() {
         viewer.loadVolumeColorMapFromFile(vol_id, this, "#FF0000", function() {
@@ -439,11 +444,20 @@ BrainBrowser.VolumeViewer.start("brainbrowser", function (viewer) {
           }
       });
       // Make panels collapsible
-      $('.panel-heading').on("click", function () {
+      $('.panel-heading').on("click", function() {
               $('.panel-body').slideToggle("fast");
-              });
+      });
+      $('.threshold-div').on("click", function() {
+          $('.thresh-group').slideToggle("fast");
+
+      });
+      $('.voxel-heading').on("click", function() {
+          $('.voxel-coords').slideToggle("fast");
+
       });
 
+
+});
 
     $("#brainbrowser-wrapper").slideDown({duration: 600});
         // End part stolen from BrainBrowser demo

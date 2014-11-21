@@ -166,3 +166,23 @@ body {
 .panel-body {
  display:none;
 }
+#color-map-select {
+  position: relative;
+  text-align: center;
+  left: 150px;
+  top: -50px;
+
+}
+.thresh-group{
+  display:none;
+}
+.voxel-coords {
+  display:none;
+}
+.intensity-value {
+ position: relative;
+ display: inline-block;
+ float: right;
+ text-align: center;
+ top: -30px;
+}

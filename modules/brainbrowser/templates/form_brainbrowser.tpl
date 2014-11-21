@@ -13,9 +13,9 @@
                 Y<input id="world-y-{{VOLID}}" class="control-inputs">
                 Z<input id="world-z-{{VOLID}}" class="control-inputs">
             </div>
-            <div class="panel panel-default">
-             <div class="control-heading" id="voxel-coordinates-heading-{{VOLID}}">
-                Voxel Coordinates 
+             <div class="panel panel-default">
+             <div class="panel-heading voxel-heading" id="voxel-coordinates-heading-{{VOLID}}">
+                <h3 class="panel-title"> Voxel Coordinates</h3>
              </div>
             <div class="voxel-coords" data-volume-id="{{VOLID}}">
                 X<input id="voxel-x-{{VOLID}}" class="control-inputs">
@@ -46,35 +46,48 @@
                 Y<input id="world-y-{{VOLID}}" class="control-inputs">
                 Z<input id="world-z-{{VOLID}}" class="control-inputs">
             </div>
-            <div class="control-heading" id="voxel-coordinates-heading-{{VOLID}}">
-                Voxel Coordinates
+            <br>
+            <div class="panel panel-default">
+            <div class="panel-heading voxel-heading" id="voxel-coordinates-heading-{{VOLID}}">
+               <h3 class="panel-title"> Voxel Coordinates</h3>
+              <span class="pull-right clickable glyphicon glyphicon-chevron-up"></span>
             </div>
             <div class="voxel-coords" data-volume-id="{{VOLID}}">
                 X<input id="voxel-x-{{VOLID}}" class="control-inputs">
                 Y<input id="voxel-y-{{VOLID}}" class="control-inputs">
                 Z<input id="voxel-z-{{VOLID}}" class="control-inputs">
             </div>
+           </div>
         </div>
         <div id="intensity-value-div-{{VOLID}}">
-            <span class="control-heading" data-volume-id="{{VOLID}}">
-               Intensity Value:
-            </span>
-            <span id="intensity-value-{{VOLID}}" class="control-inputs"></span>
+            <div class="panel panel-default">
+            <div class="control-heading panel-heading" data-volume-id="{{VOLID}}">
+               <h3 class="panel-title">Intensity Value </h3>
+            </div>
+            <span id="intensity-value-{{VOLID}}" class="control-inputs intensity-value"></span>
+            </div>
         </div>
         <div id="color-map-{{VOLID}}">
-            <span class="control-heading" id="color-map-heading-{{VOLID}}">
-                Color Map 
-            </span>
-        </div>
-        <div class="threshold-div" data-volume-id="{{VOLID}}">
-            <div class="control-heading">
-                Threshold
+            <div class="panel panel-default">
+            <div class="panel-heading" id="color-map-heading-{{VOLID}}">
+               <h3 class="panel-title">Color Map</h3>
             </div>
+           </div>
+        </div>
+        <div class="threshold-div clickable" data-volume-id="{{VOLID}}">
+            <div class="panel panel-default">
+            <div class="panel-heading">
+               <h3 class="panel-title"> Threshold</h3>
+               <span class="pull-right clickable glyphicon glyphicon-chevron-up"></span>
+            </div>
+            <div class="thresh-group">
             <div class="thresh-inputs">
                 <input id="min-threshold-{{VOLID}}" class="control-inputs thresh-input-left" value="0"/>
                 <input id="max-threshold-{{VOLID}}" class="control-inputs thresh-input-right" value="255"/>
-            </div> 
+            </div>
             <div class="slider volume-viewer-threshold" id="threshold-slider-{{VOLID}}"></div>
+           </div>
+          </div>
         </div>
         <div id="time-{{VOLID}}" class="time-div" data-volume-id="{{VOLID}}" style="display: none">
             <span class="control-heading">Time</span>
