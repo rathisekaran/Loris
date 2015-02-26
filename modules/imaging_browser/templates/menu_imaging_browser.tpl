@@ -83,6 +83,16 @@
                         {$form.Pending.html}
                     </div>
                 </div>
+                <div class="form-group col-sm-6">
+                    <label class="col-sm-12 col-md-4">
+                        {$form.Scan_type.label}
+                  </label>
+                    <div class="col-sm-12 col-md-8">
+                        {$form.Scan_type.html}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
                 <div class="form-group col-md-6">
                     <div class="col-sm-4 col-sm-offset-4">
                     		<input type="submit" class="btn btn-sm btn-primary col-xs-12" name="filter" value="Show Data">
