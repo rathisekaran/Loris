@@ -3,3 +3,5 @@ smarty/templates_c
 .gitmodules
 project-*
 *.un~
+vendor
+.idea

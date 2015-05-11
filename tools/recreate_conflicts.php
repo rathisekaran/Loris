@@ -10,8 +10,8 @@
  * @license  http://www.gnu.org/licenses/gpl-3.0.txt GPLv3
  * @link     https://www.github.com/aces/Loris/
  */
-set_include_path(get_include_path().":../project/libraries:../php/libraries:");
 
+require_once __DIR__ . "/../vendor/autoload.php";
 require_once "../php/libraries/NDB_Client.class.inc";
 require_once "../php/libraries/NDB_Config.class.inc";
 require_once "../php/libraries/ConflictDetector.class.inc";

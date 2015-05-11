@@ -25,7 +25,6 @@
  * @license  http://www.gnu.org/licenses/gpl-3.0.txt GPLv3
  * @link     https://www.github.com/aces/Loris-Trunk/
  */
-require_once 'smarty3/Smarty.class.php';
 require_once 'User.class.inc';
 require_once 'Database.class.inc';
 
@@ -156,7 +155,6 @@ class NDB_BVL_Feedback
      * to be able to complete various queries.
      *
      * @return void
-     * @throws PEAR::Error
      */
     function _setCandidateProfileInfo()
     {
@@ -226,7 +224,6 @@ class NDB_BVL_Feedback
      * Returns an array of feedback types array format: [Type][Name, Label]
      *
      * @return array
-     * @throws PEAR::Error
      */
     function getFeedbackTypes()
     {
@@ -254,7 +251,6 @@ class NDB_BVL_Feedback
      * @param integer $feedbackID ID of the thread whose type we want to get
      *
      * @return string feedback type of the thread
-     * @throws PEAR::Error
      * @fixme  This seems to try selecting a column that doesn't exist in Loris?
      */
     function getThreadType($feedbackID)
@@ -374,7 +370,7 @@ class NDB_BVL_Feedback
             $qparams['CanID'] = $this->_feedbackObjectInfo['CandID'];
             $queryBy          = " CandID";
         } elseif (!empty($this->_feedbackObjectInfo['FieldName'])) {
-            $query           .= 	" AND FieldName = :FName";
+            $query           .=     " AND FieldName = :FName";
             $qparams['FName'] = $this->_feedbackObjectInfo['FieldName'];
             $queryBy          = " FieldName";
         } else {
@@ -414,7 +410,7 @@ class NDB_BVL_Feedback
         if (empty($this->_feedbackObjectInfo['CandID'])) {
             $query .= ", f.Test_name as Instrument, ft.CommentID";
         }
-        $query  .= " FROM candidate as c,
+        $query  .= " FROM candidate as c
                         JOIN feedback_bvl_thread as ft ON (c.CandID=ft.CandID)
                         LEFT JOIN session as s ON (s.ID = ft.SessionID)";
         $qparams = array();
@@ -774,7 +770,6 @@ class NDB_BVL_Feedback
      * @param integer $feedbackID The ID of the feedback thread being closed
      *
      * @return void
-     * @throws PEAR::Error
      * FIXME: deleteTread is spelled wrong. Find all references (none?) and
      *        rename or delete this function if it's unused
      */

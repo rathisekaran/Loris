@@ -38,7 +38,6 @@ class NDB_Menu_Filter_Form extends NDB_Menu_Filter
      * saves the validated data into the database
      *
      * @return void
-     * @throws PEAR_Error
      * @access public
      */
     function save()
@@ -118,8 +117,7 @@ class NDB_Menu_Filter_Form extends NDB_Menu_Filter
      */
     function _resetForm()
     {
-        $this->form = new HTML_QuickForm('test_form');
+        $this->form = new LorisForm('test_form');
     }
-
 }
 ?>

@@ -51,7 +51,6 @@ class NDB_Caller extends PEAR
      * Singleton method
      *
      * @return NDB_Caller
-     * @throws PEAR_Error
      * @access public
      * @static
      */
@@ -222,7 +221,7 @@ class NDB_Caller extends PEAR
                 return $html;
             }
 
-            // it is an intrument
+            // it is an instrument
             $phpfile   = $base . "project/instruments/"
                                . "NDB_BVL_Instrument_$test_name.class.inc";
             $linstfile = $base."project/instruments/$test_name.linst";
@@ -271,10 +270,10 @@ class NDB_Caller extends PEAR
         if (method_exists($menu, 'getControlPanel')) {
             $this->controlPanel = $menu->getControlPanel();
         }
-        $html = $menu->display();
         if (method_exists($menu, 'save')) {
             $success = $menu->save();
         }
+        $html = $menu->display();
 
         return $html;
     }

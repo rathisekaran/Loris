@@ -42,7 +42,6 @@ class User extends UserPermissions
      * @param string $username Identifies the user
      *
      * @return User
-     * @throws PEAR_Error
      * @access public
      */
     static function &factory($username)
@@ -79,7 +78,6 @@ class User extends UserPermissions
      * @param string $username Identifies the user
      *
      * @return User
-     * @throws PEAR_Error
      * @access public
      * @static
      */
@@ -99,7 +97,6 @@ class User extends UserPermissions
      * @param array $set The array formatted for use in a Database call
      *
      * @return void
-     * @throws PEAR_Error
      * @access public
      * @static
      */
@@ -120,7 +117,6 @@ class User extends UserPermissions
      * @param array $set The array formatted for use in a Database call
      *
      * @return void
-     * @throws PEAR_Error
      * @access public
      */
     function update($set)
@@ -363,7 +359,50 @@ class User extends UserPermissions
         return ($this->userInfo['CenterID']== 1);
     }
 
+    /**
+     * Updates the password for this user into the appropriate field in the
+     * database.
+     *
+     * @param string $password The plain text password to be hashed and saved.
+     *
+     * @return none
+     */
+    function updatePassword($password)
+    {
+        // Check if the PHP 5.5 password hashing API is available.
+        $php55 = false;
+        if (function_exists("password_verify")) {
+            $php55 = true;
+        }
 
+        $expiry = date(
+            'Y-m-d',
+            mktime(0, 0, 0, date('n') + 6, date('j'), date('Y'))
+        );
+
+        $updateArray = array('Password_expiry' => $expiry);
+
+        // Update the appropriate password field, null the other one
+        // for security.
+        if ($php55) {
+            $updateArray['Password_hash'] = password_hash(
+                $password,
+                PASSWORD_DEFAULT
+            );
+            $updateArray['Password_MD5']  = null;
+        } else {
+            $updateArray['Password_hash'] = null;
+            $updateArray['Password_MD5']  = User::MD5Salt($password);
+        }
+
+        $this->update($updateArray);
+
+        $config       =& NDB_Config::singleton();
+        $couch_config = $config->getSetting("CouchDB");
+        if ($couch_config['SyncAccounts'] === "true") {
+            $this->updateCouchUser($password);
+        }
+    }
     /**
      * Updates the CouchDB user for this user to synchronize
      * the password with Loris.
@@ -395,7 +434,7 @@ class User extends UserPermissions
             'GET',
             $auth
         );
-
+        $userobj  = json_decode($userjson, true);
         if (isset($userobj['error']) && $userobj['error'] == 'not_found') {
             $userobj = array(
                         '_id'   => 'org.couchdb.user:' . $username,
@@ -404,7 +443,7 @@ class User extends UserPermissions
                         'roles' => array(
                                     'dqg',
                                     $c_config['database'],
-                                   )
+                                   ),
                        );
         }
         $userobj['password'] = $password;

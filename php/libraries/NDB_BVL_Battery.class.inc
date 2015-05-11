@@ -40,7 +40,7 @@ class NDB_BVL_Battery extends PEAR
     /**
      * Constructor - merely asserts that the environment is suitable
      */
-    function NDB_BVL_Battery()
+    function __construct()
     {
     }
 
@@ -476,6 +476,10 @@ class NDB_BVL_Battery extends PEAR
             // Unless the center is specified & matched, don't return
             // site-restricted instruments
             $query .= " AND b.CenterID IS NULL";
+        }
+
+        if ($firstVisit === false) {
+            $query .= " AND (b.firstVisit IS NULL OR b.firstVisit='N')";
         }
 
         // get the list of instruments

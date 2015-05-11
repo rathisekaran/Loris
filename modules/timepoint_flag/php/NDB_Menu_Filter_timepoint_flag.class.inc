@@ -39,7 +39,6 @@ class NDB_Menu_Filter_timepoint_flag extends NDB_Menu_Filter
     * Overwriting this menu to call the _save method b/c this menu containg a form
     *
     * @return void
-    * @throws PEAR_Error
     * @access public
     */
     function setup()
@@ -93,9 +92,6 @@ class NDB_Menu_Filter_timepoint_flag extends NDB_Menu_Filter
             $this->order_by = 'psc.Name, candidate.CandID DESC, session.ID';
             $this->validFilters = array('session.CenterID', 'session.SubprojectID', 'parameter_timepoint_flag.CategoryID', 'parameter_timepoint_flag.Flag_name');
             break;
-	    default:
-	    $headers = array();
-	
         }
         
         // set headers
@@ -381,7 +377,6 @@ class NDB_Menu_Filter_timepoint_flag extends NDB_Menu_Filter
     * checks the form element and if the status was set/changed updates the record
     *
     * @return void
-    * @throws PEAR_Error
     * @access public
     */
     function _save()
@@ -473,7 +468,6 @@ class NDB_Menu_Filter_timepoint_flag extends NDB_Menu_Filter
     * @param int SessionID
     * @param string name of the flag
     * @return array flag info
-    * @throws PEAR_error
     * @access private
     */
     function _getCurrentFlagInfo($sessionID, $flagName)
@@ -487,7 +481,6 @@ class NDB_Menu_Filter_timepoint_flag extends NDB_Menu_Filter
     * generates tpl_data elements for the talbe with the flag to evaluate timepoint exclusions
     * @return bool
     * @access private
-    * @throws PEAR_Error
     */
     function _displayEvaluateTimepoint($sessionID)
     {
@@ -543,7 +536,6 @@ class NDB_Menu_Filter_timepoint_flag extends NDB_Menu_Filter
     /**
     * returns true if the user has a permission to evaluate timepoint overall exclusion
     * @return bool
-    * @throws PEAR_Error
     */
     function _hasAccess_EvaluateTimepoint()
     {
