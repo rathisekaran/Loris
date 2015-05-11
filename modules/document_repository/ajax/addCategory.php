@@ -26,7 +26,12 @@ if (Utility::isErrorX($DB)) {
     print "Could not connect to database: ".$DB->getMessage()."<br>\n"; die();
 }
 
-if ($_POST['category_name'] !== '') {
+
+
+if (empty($_POST['category_name']) && $_POST['category_name'] !== '0') {
+    header("HTTP/1.1 400 Bad Request");
+    exit;
+} else {
     $category_name = $_POST['category_name'];
 }
 if ($_POST['parent_id'] !== '') {
@@ -47,7 +52,7 @@ if (Utility::isErrorX($user)) {
 }
 
 //if user has document repository permission
-if ($user->hasPermission('file_upload')) {
+if ($user->hasPermission('document_repository_view') || $user->hasPermission('document_repository_delete')) {
     $DB->insert(
         "document_repository_categories",
         array("category_name" => $category_name,

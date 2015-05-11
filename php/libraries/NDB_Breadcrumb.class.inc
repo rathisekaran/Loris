@@ -140,7 +140,6 @@ class NDB_Breadcrumb extends PEAR
      * Makes a breadcrumb
      *
      * @return array
-     * @throws PEAR_Error
      * @access public
      */
     function getBreadcrumb()
@@ -237,7 +236,7 @@ class NDB_Breadcrumb extends PEAR
                        'candidate_list'   => array(
                                               'next'  => '',
                                               'unset' => '',
-                                             )
+                                             ),
                       );
 
         // loop through the crumbs according to the order above, or just

@@ -3,7 +3,7 @@
  * Controls access to a module's javascript files on the filesystem. This script
  * should ensure that only files relative to module's path specified are
  * accessible.
- * By calling new NDB_Client(), it also makes sure that the user is logged in to 
+ * By calling new NDB_Client(), it also makes sure that the user is logged in to
  * Loris.
  *
  * It also does validation to make sure required config settings are specified.
@@ -17,7 +17,6 @@
  *  @author   Dave MacFarlane <driusan@bic.mni.mcgill.ca>
  *  @license  Loris license
  *  @link     https://github.com/aces/Loris-Trunk
- *
  */
 
 
@@ -28,6 +27,7 @@ set_include_path(
     __DIR__ . "/../php/libraries"
 );
 
+require_once __DIR__ . "/../vendor/autoload.php";
 // Ensures the user is logged in, and parses the config file.
 require_once "NDB_Client.class.inc";
 $client = new NDB_Client();
@@ -38,10 +38,10 @@ $config =& NDB_Config::singleton();
 $paths  = $config->getSetting('paths');
 
 // Basic config validation
-$basePath    = $paths['base'];
+$basePath = $paths['base'];
 if (empty($basePath)) {
     error_log("ERROR: Config settings are missing");
-    header("HTTP/1.1 500 Internal Server Error"); 
+    header("HTTP/1.1 500 Internal Server Error");
     exit(1);
 }
 

@@ -74,6 +74,8 @@ class Candidate
      *
      * @return null As a side-effect loads candidate into current
      *              object
+     * @throws DatabaseException
+     * @throws Exception
      */
     function select($candID)
     {
@@ -182,7 +184,6 @@ class Candidate
      * @param string $PSCID       PSCID specified by the user, if available
      *
      * @return int   $candID      candidate id of the new candidate
-     * @throws PEAR::Error
      * @static
      */
     static function createNew($centerID, $dateOfBirth, $edc, $gender, $PSCID=null)
@@ -253,6 +254,43 @@ class Candidate
 
         // return the new candid
         return $candID;
+    }
+
+    /**
+     * Checks if candidate exist given a candidate ID and PSCID
+     * Used to check that PSCID matches CandID when entered into the boxes
+     * on the candidate_list form
+     *
+     * @param int    $candID 6 digit Loris CandID
+     * @param string $PSCID  project study center ID
+     *
+     * @return bool TRUE if candidate is found (in candidate table), FALSE otherwise
+     * @throws DatabaseException
+     */
+    static function candidateExists($candID, $PSCID)
+    {
+        // make a local reference to the Database object
+        $db =& Database::singleton();
+
+        $candidateIDs = array(
+                         ':candidate_id' => $candID,
+                         ':pscid'        => $PSCID,
+                        );
+
+        // get candidate data from database
+        $query = "SELECT CandID
+            FROM candidate
+            WHERE CandID = :candidate_id AND PSCID = :pscid
+            AND Active = 'Y'";
+
+        $row = $db->pselectRow($query, $candidateIDs);
+
+        if (!empty($row)) {
+            return true;
+        }
+
+        return false;
+
     }
 
     /**
@@ -466,7 +504,6 @@ class Candidate
      * Returns the list of visit labels w/ corresponding SessionID as key
      *
      *@return array Associative array in the format SessionID=>Visit_label
-     *@throws PEAR:Error
      */
     function getListOfVisitLabels()
     {
@@ -495,7 +532,6 @@ class Candidate
      *
      * @return     integer Next visit number for candidate
      * @deprecated
-     *@throws     PEAR:Error
      */
     function getNextVisitNo()
     {
@@ -520,13 +556,12 @@ class Candidate
      * can be called statically
      *
      * @return string Next suggested visit label
-     * @throws PEAR:Error
      */
     function getNextVisitLabel()
     {
         $config =& NDB_Config::singleton();
 
-        $visitLabelSettings = $config->getSetting('visitLabels');
+        $visitLabelSettings = $config->getSetting('visitLabel');
         $nextVisitLabel     = null;
 
         $candID = $this->getCandID();
@@ -571,7 +606,6 @@ class Candidate
      * project
      *
      * @return array Array of the form SubprojectID => SubprojectID
-     * @throws PEAR::Error
      */
     function getValidSubprojects()
     {
@@ -617,7 +651,6 @@ class Candidate
     * Generates a new random CandID
     *
     * @return integer An unused random 6 digit candidate id
-    * @throws PEAR::Error
     */
     static function _generateCandID()
     {
@@ -645,7 +678,6 @@ class Candidate
     * @param string $prefix The prefix to use for the PSCID
     *
     * @return string Project candidate id in format defined by config.xml
-    * @throws PEAR::Error
     */
     static function _generatePSCID($prefix)
     {
@@ -686,7 +718,6 @@ class Candidate
      * This is based on _generatePSCID.
      *
      * @return string Anonymized ExternalID for distributing data
-     * @throws PEAR::Error
      */
     function _generateExternalID()
     {

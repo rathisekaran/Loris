@@ -22,7 +22,7 @@ if (Utility::isErrorX($userSingleton)) {
 }
 
 //if user has document repository permission
-if ($userSingleton->hasPermission('file_upload')) {
+if ($userSingleton->hasPermission('document_repository_view') || $userSingleton->hasPermission('document_repository_delete')) {
     if ($action == 'upload') {
         $user = $_POST['user'];
         $category = $_POST['category'];
@@ -77,6 +77,11 @@ if ($userSingleton->hasPermission('file_upload')) {
         $visit = $_POST['visitEdit'];
         $comments = $_POST['commentsEdit'];
         $version = $_POST['versionEdit'];
+
+        if(empty($category) && $category !== '0'){
+            header("HTTP/1.1 400 Bad Request");
+            exit;
+        }
 
         $values = array('File_category' => $category, 'Instrument' => $instrument, 'For_site' => $site,
                         'PSCID' => $pscid, 'visitLabel' => $visit, 'comments' => $comments, 'version' => $version);

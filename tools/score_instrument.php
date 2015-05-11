@@ -20,6 +20,8 @@
 //Ensure php version compatability
 //taken from php.net notes
 set_include_path(get_include_path().":../project/libraries:../php/libraries:");
+require_once __DIR__ . "/../vendor/autoload.php";
+
 if (version_compare(phpversion(),'4.3.0','<'))
 {
     define('STDIN',fopen("php://stdin","r"));
@@ -52,6 +54,7 @@ if (!empty($argv[3])) $candID = $argv[3];
 if (!empty($argv[4])) $sessionID = $argv[4];
 
 
+require_once __DIR__ . "/../vendor/autoload.php";
 /**
  * inititalize
  */
